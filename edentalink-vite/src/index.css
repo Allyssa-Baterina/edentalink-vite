@@ -1,0 +1,169 @@
+@import 'tailwindcss';
+
+@theme {
+    --breakpoint-3xs: 15rem;
+    --breakpoint-2xs: 20rem;
+    /* 320px */
+    --breakpoint-xs: 30rem;
+    /* 480px */
+    --breakpoint-2xl: 100rem;
+    --breakpoint-3xl: 120rem;
+
+    --color-primary: oklch(0.86 0.16 86.42);
+
+    --color-primary-bg: oklch(0.97 0.01 226.64);
+    --color-secondary-bg: oklch(0.96 0.03 231.66);
+    --color-danger-bg: oklch(0.64 0.22 28.84);
+    --color-success-bg: oklch(0.68 0.23 142.49);
+
+    --color-primary-btn: oklch(0.65 0.19 252.09);
+    --color-secondary-btn: oklch(0.67 0.18 250.01);
+    --color-secondary-btn-text: oklch(0.65 0.19 251.54);
+
+    --color-primary-border: oklch(0.63 0.14 256.99);
+
+    --color-success-bg: oklch(0.65 0.19 251.54);
+    --color-success-text: oklch(0.46 0.16 142.49);
+
+    --color-disable: oklch(0.89 0 0);
+}
+
+:root {
+    line-height: 1.5;
+}
+
+.sidebar {
+    @apply -left-320 top-0 bottom-1 shadow-lg p-4 bg-white min-w-[320px] w-full max-w-[360px] fixed z-10 lg:hidden;
+}
+
+.sidebar.open {
+    @apply left-0;
+}
+
+.sidenav-item {
+    @apply capitalize text-lg font-semibold text-gray-500 w-full px-2 py-3 hover:bg-primary-bg hover:text-gray-800 focus:outline-primary;
+}
+
+.sidenav-item.active {
+    @apply bg-primary text-white font-bold;
+}
+
+.nav-item {
+    @apply capitalize text-gray-600 hover:text-gray-900 drop-shadow-lg;
+}
+
+.nav-item.active {
+    @apply font-semibold text-gray-900;
+}
+
+/* Global Calendar Styles */
+.react-calendar {
+    width: 100%;
+    max-width: 350px;
+    min-width: 350px;
+    height: 360px;
+    min-height: 310px;
+    border: none !important;
+    background-color: white;
+    padding: 1rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Default Tile (Day) Styling */
+.react-calendar__tile {
+    width: 10px;
+    text-align: center;
+    font-size: 0.95rem;
+    transition: all 0.2s ease-in-out;
+    padding: 10px;
+}
+
+/* Hover effect for tiles */
+.react-calendar__tile:hover {
+    background-color: rgba(59, 130, 246, 0.2);
+    cursor: pointer;
+}
+
+/* Today’s Date */
+.react-calendar__tile--now {
+    background-color: rgb(253, 230, 138);
+    color: black;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Selected Date */
+.react-calendar__tile--active {
+    background-color: rgb(59, 130, 246);
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: small;
+}
+
+/* Year and Month Tile Styling */
+.react-calendar__tile.react-calendar__year-view__months__month,
+.react-calendar__tile.react-calendar__decade-view__years__year {
+    width: 10px;
+    text-align: center;
+    font-size: 0.95rem;
+    transition: all 0.2s ease-in-out;
+    padding: 20px;
+}
+
+/* Navigation Styling */
+.react-calendar__navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 25px;
+}
+
+/* Label of Navigation */
+.react-calendar__navigation__label {
+    font-weight: bold;
+    flex-grow: 1;
+    text-align: center;
+    color: oklch(0.551 0.027 264.364);
+}
+
+/* Previous and Next buttons */
+.react-calendar__navigation__arrow.react-calendar__navigation__next-button,
+.react-calendar__navigation__arrow.react-calendar__navigation__prev-button {
+    width: 3rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+/* Hidden buttons for more navigation options */
+.react-calendar__navigation__prev2-button,
+.react-calendar__navigation__next2-button {
+    display: none;
+}
+
+/* Weekday Row */
+.react-calendar__month-view__weekdays__weekday {
+    @apply font-bold text-gray-700 *:no-underline;
+}
+
+/* Weekday Styling */
+.react-calendar__month-view__weekdays__weekday {
+    font-size: small;
+    color: rgb(55, 65, 81);
+    text-align: center;
+    padding-bottom: 4px;
+}
+
+.react-datepicker__input-container input {
+    width: 100%;
+}
+
+.react-datepicker-wrapper{
+    width: 100%;
+}
