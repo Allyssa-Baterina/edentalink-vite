@@ -49,28 +49,28 @@ export const CreateProfile = () => {
                                 id="lastName"
                                 type="text"
                                 placeholder="Enter Last Name"
-                                className="w-full h-9 border rounded p-2 pl-4 shadow-md focus:outline-none placeholder:text-sm"
+                                className="w-full h-9 pl-3 border rounded shadow-md focus:outline-none placeholder:text-sm"
                             />
 
                             <input
                                 id="firstName"
                                 type="text"
                                 placeholder="Enter First Name"
-                                className="w-full h-9 border rounded p-2 pl-4 shadow-md focus:outline-none placeholder:text-sm"
+                                className="w-full h-9 border pl-3 rounded shadow-md focus:outline-none placeholder:text-sm"
                             />
 
                             <input
                                 id="middleName"
                                 type="text"
                                 placeholder="Enter Middle Name"
-                                className="w-full h-9 border rounded p-2 pl-4 shadow-md focus:outline-none placeholder:text-sm"
+                                className="w-full h-9 border pl-3 rounded shadow-md focus:outline-none placeholder:text-sm"
                             />
 
                             <input
                                 id="suffix"
                                 type="text"
                                 placeholder="Enter Suffix"
-                                className="w-full h-9 border rounded p-2 pl-4 shadow-md focus:outline-none placeholder:text-sm"
+                                className="w-full h-9 border pl-3 rounded shadow-md focus:outline-none placeholder:text-sm"
                             />
                         </div>
 
@@ -80,7 +80,7 @@ export const CreateProfile = () => {
                             </label>
 
                             <label className="block text-md font-semibold text-gray-700 mb-1">
-                                Card Name
+                                Card Number
                             </label>
 
                             <label className="block text-md font-semibold text-gray-700 mb-1">
@@ -98,9 +98,11 @@ export const CreateProfile = () => {
                                 name="payor"
                                 id="payor"
                                 defaultValue=""
-                                className="w-full h-9 px-2 py-1 border rounded-md shadow-md"
+                                className="w-full pl-2 h-9 border rounded-md shadow-md"
                             >
-                                <option value="" disabled></option>
+                                <option value="" disabled>
+                                    Select Payor
+                                </option>
                                 <option value="walkIn">Walk-in</option>
                                 <option value="card">Card</option>
                             </select>
@@ -116,7 +118,7 @@ export const CreateProfile = () => {
                                         : 'Enter Card Number'
                                 }
                                 inputMode="numeric"
-                                className={`w-full h-9 px-2 py-1 border rounded-md shadow-md placeholder:text-sm 
+                                className={`w-full h-9 pl-3 border rounded-md shadow-md placeholder:text-sm 
                                               ${payor === 'walkIn' ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-white'}
                                           `}
                             />
@@ -184,15 +186,17 @@ export const CreateProfile = () => {
 
                         <div className="grid grid-cols-4 gap-4">
                             <select
-                                className="w-full h-9 border rounded-sm"
-                                value={status}
                                 onChange={(e) => setStatus(e.target.value)}
+                                name="status"
+                                id="status"
+                                defaultValue=""
+                                className="w-full pl-2 h-9 border rounded-md shadow-md"
                             >
                                 <option value="" disabled>
                                     Select Status
                                 </option>
-                                <option value="single">Single</option>
-                                <option value="married">Married</option>
+                                <option value="walkIn">Single</option>
+                                <option value="card">Married</option>
                             </select>
 
                             <input
@@ -200,7 +204,7 @@ export const CreateProfile = () => {
                                 id="mobileNumber"
                                 name="mobileNumber"
                                 placeholder="Enter Mobile Number"
-                                className="w-full h-9 border rounded p-2 pl-4 shadow-md focus:outline-none placeholder:text-sm"
+                                className="w-full h-9 border rounded pl-3 shadow-md focus:outline-none placeholder:text-sm"
                             />
 
                             <input
@@ -208,7 +212,7 @@ export const CreateProfile = () => {
                                 id="email"
                                 name="email"
                                 placeholder="Enter Email"
-                                className="w-full h-9 border rounded p-2 pl-4 shadow-md focus:outline-none placeholder:text-sm"
+                                className="w-full h-9 border rounded pl-3 shadow-md focus:outline-none placeholder:text-sm"
                             ></input>
                         </div>
                         <div className="flex grid-cols-2 gap-4 justify-center items-center mt-14">

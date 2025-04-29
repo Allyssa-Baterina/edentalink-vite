@@ -4,25 +4,27 @@ import { useState } from 'react';
 import { IconButton, TextField } from '@mui/material';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import ArrowDropUpRoundedIcon from '@mui/icons-material/ArrowDropUpRounded';
+import { Header } from '../../shared/components/Header';
 
 export const Modal = ({ isOpen, onClose }) => {
-    const [year, setYear] = useState('');
-    const [month, setMonth] = useState('');
-    const [day, setDay] = useState('');
-    const [inputSets, setInputSets] = useState([{}]);
+    const [inputSets, setInputSets] = useState([
+        { year: '', month: '', day: '' }
+    ]);
 
-    const handleChange = (setter, value, min, max) => {
+    const handleChange = (index, field, value, min, max) => {
         if (value === '' || (value >= min && value <= max)) {
-            setter(value);
+            const updated = [...inputSets];
+            updated[index][field] = value;
+            setInputSets(updated);
         }
     };
 
-    const FieldWithButtons = ({ value, setValue, min, max, placeholder }) => (
+    const FieldWithButtons = ({ index, field, min, max, placeholder }) => (
         <div className="flex items-center">
             <TextField
-                value={value}
+                value={inputSets[index][field]}
                 onChange={(e) =>
-                    handleChange(setValue, + e.target.value, min, max)
+                    handleChange(index, field, +e.target.value, min, max)
                 }
                 size="small"
                 className="w-18 shadow-md"
@@ -32,24 +34,23 @@ export const Modal = ({ isOpen, onClose }) => {
             <div className="flex flex-col gap-0 items-center leading-none mr-4">
                 <IconButton
                     className="w-4 h-4 p-0"
-                    onClick={() =>
-                        setValue((next) =>
-                            next ? (next < max ? next + 1 : min) : min
-                        )
-                    }
+                    onClick={() => {
+                        const current = parseInt(inputSets[index][field]) || min;
+                        const next = current < max ? current + 1 : min;
+                        handleChange(index, field, next, min, max);
+                    }}
                 >
                     <ArrowDropUpRoundedIcon
                         sx={{ fontSize: '32px', color: '#00BA00' }}
                     />
                 </IconButton>
-
                 <IconButton
                     className="w-4 h-4 p-0"
-                    onClick={() =>
-                        setValue((prev) =>
-                            prev ? (prev > min ? prev - 1 : max) : max
-                        )
-                    }
+                    onClick={() => {
+                        const current = parseInt(inputSets[index][field]) || max;
+                        const prev = current > min ? current - 1 : max;
+                        handleChange(index, field, prev, min, max);
+                    }}
                 >
                     <ArrowDropDownRoundedIcon
                         sx={{ fontSize: '32px', color: '#00BA00' }}
@@ -60,7 +61,7 @@ export const Modal = ({ isOpen, onClose }) => {
     );
 
     const handleAddSet = () => {
-        setInputSets([...inputSets, {}]);
+        setInputSets([...inputSets, { year: '', month: '', day: '' }]);
     };
 
     const handleRemoveSet = (index) => {
@@ -82,9 +83,7 @@ export const Modal = ({ isOpen, onClose }) => {
                                 {index > 0 && (
                                     <div className="flex flex-col">
                                         <IconButton
-                                            onClick={() =>
-                                                handleRemoveSet(index)
-                                            }
+                                            onClick={() => handleRemoveSet(index)}
                                             sx={{
                                                 backgroundColor: '#FF3B30',
                                                 color: 'white',
@@ -96,9 +95,7 @@ export const Modal = ({ isOpen, onClose }) => {
                                                 },
                                             }}
                                         >
-                                            <DeleteIcon
-                                                sx={{ fontSize: '16px' }}
-                                            />
+                                            <DeleteIcon sx={{ fontSize: '16px' }} />
                                         </IconButton>
                                     </div>
                                 )}
@@ -108,11 +105,7 @@ export const Modal = ({ isOpen, onClose }) => {
                                 <div className="w-full md:w-auto flex-1">
                                     <p>Procedure</p>
                                     <select className="w-full h-9 px-2 py-1 border rounded-md shadow-md">
-                                        <option
-                                            value=""
-                                            disabled
-                                            selected
-                                        ></option>
+                                        <option value="" disabled selected></option>
                                     </select>
                                 </div>
 
@@ -121,7 +114,7 @@ export const Modal = ({ isOpen, onClose }) => {
                                     <input
                                         type="number"
                                         placeholder="Enter Quantity"
-                                        className="w-full h-9 border rounded p-2 pl-4 shadow-md focus:outline-none placeholder:text-sm"
+                                        className="flex w-full h-9 border rounded p-2 pl-4 shadow-md focus:outline-none placeholder:text-sm"
                                     />
                                 </div>
 
@@ -164,22 +157,22 @@ export const Modal = ({ isOpen, onClose }) => {
                                 <label>Validity</label>
                                 <div className="flex gap-2">
                                     <FieldWithButtons
-                                        value={year}
-                                        setValue={setYear}
+                                        index={index}
+                                        field="year"
                                         min={1900}
                                         max={2100}
                                         placeholder="YYYY"
                                     />
                                     <FieldWithButtons
-                                        value={month}
-                                        setValue={setMonth}
+                                        index={index}
+                                        field="month"
                                         min={1}
                                         max={12}
                                         placeholder="MM"
                                     />
                                     <FieldWithButtons
-                                        value={day}
-                                        setValue={setDay}
+                                        index={index}
+                                        field="day"
                                         min={1}
                                         max={31}
                                         placeholder="DD"

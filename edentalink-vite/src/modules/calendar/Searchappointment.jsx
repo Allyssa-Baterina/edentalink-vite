@@ -53,14 +53,14 @@ export const Searchappointment = () => {
                             id="lastName"
                             name="lastName"
                             placeholder="Enter Last Name"
-                            className="w-full h-9 border rounded p-2 pl-4 shadow-md focus:outline-none placeholder:text-sm"
+                            className="w-full h-9 border rounded pl-3 shadow-md focus:outline-none placeholder:text-sm"
                         />
                         <input
                             type="text"
                             id="firstName"
                             name="firstName"
                             placeholder="Enter First Name"
-                            className="w-full h-9 border rounded p-2 pl-4 shadow-md focus:outline-none placeholder:text-sm"
+                            className="w-full h-9 border rounded pl-3 shadow-md focus:outline-none placeholder:text-sm"
                         />
 
                         <div className="relative">
@@ -75,7 +75,7 @@ export const Searchappointment = () => {
                                         <input
                                             placeholder="MM/DD/YYYY"
                                             type="text"
-                                            className="date-input border rounded p-2 pl-4 shadow-md focus:outline-none text-sm"
+                                            className="date-input border rounded p-2 pl-3 shadow-md focus:outline-none text-sm"
                                             value={
                                                 startDate
                                                     ? startDate.toLocaleDateString()
@@ -110,7 +110,7 @@ export const Searchappointment = () => {
                             type="submit"
                             className="flex justify-center items-center w-30 h-10 border border-[#0090FF] bg-[#0090FF] text-[14px] text-white font-bold rounded-lg cursor-pointer"
                         >
-                            Save
+                            Search
                         </button>
                     </div>
                 </div>
